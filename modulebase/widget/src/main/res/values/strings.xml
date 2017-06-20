@@ -593,4 +593,13 @@
     <string name="Default_room">默认房间</string>
     <string name="devicecommon_Connection_success">连接成功</string>
     <string name="devicecommon_Select_the_location_of_the_device">选择设备所在位置</string>
+    <string name="saves">保存中...</string>
+    <string name="alarm">alarm</string>
+    <string name="unknow">unknow</string>
+    <string name="devicecommon_Do_you_star_the_timing_alarm">是否启动定时报警</string>
+    <string name="devicecommon_cycle">周期</string>
+    <string name="devicecommon_Start_alarm_time">启动报警时间</string>
+    <string name="devicecommon_Turn_off_alarm_time">关闭报警时间</string>
+    <string name="alarm_title">报警提示</string>
+    <string name="devicecommon_alarm_settins">报警设置</string>
 </resources>

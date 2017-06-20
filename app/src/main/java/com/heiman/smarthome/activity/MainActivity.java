@@ -145,21 +145,18 @@ public class MainActivity extends GwBaseActivity {
         DataSupport.findAllAsync(XlinkDevice.class).listen(new FindMultiCallback() {
             @Override
             public <T> void onFinish(List<T> t) {
-                MyApplication.getLogger().i("设备:" + t.size());
                 List<XlinkDevice> xlinkDeviceList = (List<XlinkDevice>) t;
-                MyApplication.getLogger().i("设备:" + xlinkDeviceList.size());
                 for (XlinkDevice xlinkDevice : xlinkDeviceList) {
                     MyApplication.getLogger().i("设备:" + xlinkDevice.getDeviceMac() + xlinkDevice.getAccessAESKey());
                     DeviceManage.getInstance().addDevice(xlinkDevice);
+                    setDevice(xlinkDevice);
                     if (xlinkDevice.getDeviceType() == Constant.DEVICE_TYPE.DEVICE_WIFI_GATEWAY_HS1GW_NEW) {
                         if (SmartHomeUtils.isEmptyString(xlinkDevice.getAccessAESKey())) {
                             List<String> OID = new ArrayList<String>();
                             OID.add(HeimanCom.COM_GW_OID.GET_AES_KEY);
                             String sb = HeimanCom.getOID(SmartPlug.mgetSN(), 0, OID);
                             BaseApplication.getLogger().json(sb);
-                            if (xlinkDevice.getDeviceState() != 0) {
-                                sendData(sb, false);
-                            }
+                            sendData(sb, false);
                         }
                     }
                 }
@@ -170,7 +167,7 @@ public class MainActivity extends GwBaseActivity {
             public <T> void onFinish(List<T> t) {
                 List<SubDevice> subDeviceList = (List<SubDevice>) t;
                 for (SubDevice subDevice : subDeviceList) {
-                    SubDeviceManage.deviceMap.put(subDevice.getZigbeeMac(), subDevice);
+                    SubDeviceManage.getInstance().addDevice(subDevice);
                 }
             }
         });
@@ -209,20 +206,13 @@ public class MainActivity extends GwBaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-//                        Bundle paramBundle = new Bundle();
-//                        paramBundle.putString(Constant.DEVICE_MAC, "abc123456");
-//                        paramBundle.putBoolean(Constant.IS_SUB, false);
-//                        startActivityForName("com.heiman.gateway.GwActivity", paramBundle);
-//                        startActivity(new Intent(MainActivity.this, DeviceListActivity.class));
                         Intent informationIntent = new Intent(MainActivity.this, InformationActivity.class);
                         startActivity(informationIntent);
                         break;
                     case 1:
-//                        startActivity(new Intent(MainActivity.this, ShareDeviceActivity.class));
                         startActivityForName("com.heiman.home.HomeListActivity");
                         break;
                     case 2:
-//                        feedbackeAgent.startDefaultThreadActivity();
                         Intent shareDeviceIntent = new Intent(MainActivity.this, ShareDeviceActivity.class);
 
                         if (spinnerGw.getTag() == null || !(spinnerGw.getTag() instanceof List)) {

@@ -83,7 +83,7 @@ public class MainDevicesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private void setXlinkView(ItemViewHolder holder, final XlinkDevice xlinkDevice) {
-        MyApplication.getLogger().i("设备名称：" + xlinkDevice.getDeviceName());
+//        MyApplication.getLogger().i("设备名称：" + xlinkDevice.getDeviceName());
         holder.dragIndicatorView.setText(String.valueOf(4));
         holder.dragIndicatorView.setOnDismissAction(new DragIndicatorView.OnIndicatorDismiss() {
             @Override
@@ -140,6 +140,7 @@ public class MainDevicesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private void setSubView(final ItemViewHolder holder, final SubDevice subDevice) {
+        MyApplication.getLogger().i("Main:"+subDevice.getDeviceName());
         holder.textView.setText(subDevice.getDeviceName());
 
         switch (subDevice.getDeviceType()) {

@@ -29,10 +29,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 /**
  * @Author : 肖力
  * @Time :  2017/5/9 11:32
- * @Description :
+ * @Description :海曼协议
  * @Modify record :
  */
 
@@ -581,27 +582,30 @@ public class HeimanCom {
             return null;
         }
     }
+
     /**
      * 获取网关场景
-     * @param SN 随机数
+     *
+     * @param SN      随机数
      * @param encrypt 是否加密
      * @return
      */
     public static String getScene(int SN, int encrypt) {
         HashMap<String, Object> map = new HashMap<>();
-            map.put("SN", SN);
-            map.put("CID", Constant.JOSN_CID.COMMAND_GET);
-            map.put("SID", BaseApplication.getMyApplication().getUserInfo().getNickname());
-            map.put("TEID", BaseApplication.getMyApplication().getUserInfo().getId() + "");
-            map.put("ENCRYPT", encrypt);
-            HashMap<String, Object> data = new HashMap<>();
-            ArrayList<String> list = new ArrayList<>();
-            list.add(COM_GW_OID.SCENE);
-            data.put("OID", list);
-            map.put("PL", data);
-            String jsonData = UsefullUtill.getJSONStr(map);
-            return jsonData;
+        map.put("SN", SN);
+        map.put("CID", Constant.JOSN_CID.COMMAND_GET);
+        map.put("SID", BaseApplication.getMyApplication().getUserInfo().getNickname());
+        map.put("TEID", BaseApplication.getMyApplication().getUserInfo().getId() + "");
+        map.put("ENCRYPT", encrypt);
+        HashMap<String, Object> data = new HashMap<>();
+        ArrayList<String> list = new ArrayList<>();
+        list.add(COM_GW_OID.SCENE);
+        data.put("OID", list);
+        map.put("PL", data);
+        String jsonData = UsefullUtill.getJSONStr(map);
+        return jsonData;
     }
+
     /**
      * 设置联动
      *
@@ -682,9 +686,11 @@ public class HeimanCom {
             return null;
         }
     }
-   /**
+
+    /**
      * 获取联动
-     * @param SN 随机数
+     *
+     * @param SN      随机数
      * @param encrypt 是否加密
      * @return
      */
@@ -703,6 +709,7 @@ public class HeimanCom {
         String jsonData = UsefullUtill.getJSONStr(map);
         return jsonData;
     }
+
     /**
      * 设置子设备数据
      *
